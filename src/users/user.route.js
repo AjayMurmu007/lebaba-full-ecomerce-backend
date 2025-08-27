@@ -50,9 +50,9 @@ router.post('/login', async (req, res) => {
         res.cookie('token', token, {
             httpOnly: true,    // Make the cookie inaccessible to JavaScript (helps prevent XSS attacks)
             // secure: process.env.NODE_ENV === 'production',     // Use secure cookies in production
-            secure: false,     // Use secure cookies in production 
-             sameSite: 'Lax',      // ✅ 'Lax' or 'Strict' works for localhost
-            // sameSite: 'None',   // Helps prevent CSRF attacks     
+            secure: true,     // Use secure cookies in production
+            sameSite: 'None',      // ✅ 'Lax' or 'Strict' works for localhost
+            // sameSite: 'None',   // Helps prevent CSRF attacks
             // maxAge: 24 * 60 * 60 * 1000 // Cookie expires in 1 day
         });
 
@@ -86,7 +86,8 @@ router.post('/logout', (req, res) => {
         // Clear the token cookie to log out the user
         res.clearCookie('token', {
             httpOnly: true,
-            secure: false, // Use secure cookies in production
+            // secure: false, // Use secure cookies in production
+            secure: true,
             sameSite: 'None' // Helps prevent CSRF attacks
         });
         // console.log('User logged out successfully');
