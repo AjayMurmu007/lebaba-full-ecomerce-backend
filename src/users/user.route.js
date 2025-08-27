@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
             // secure: process.env.NODE_ENV === 'production',     // Use secure cookies in production
             // secure: false,     // Use secure cookies in production
             secure: true,
-            // sameSite: 'Lax',      // ✅ 'Lax' or 'Strict' works for localhost
+            // sameSite: 'Lax',      // 'Lax' or 'Strict' works for localhost
             sameSite: 'None',   // Helps prevent CSRF attacks
             // maxAge: 24 * 60 * 60 * 1000 // Cookie expires in 1 day
         });
