@@ -17,9 +17,32 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
   // origin: 'http://localhost:5173',
-  origin: 'https://lebaba-full-ecommerce-frontend.vercel.app',
+  // origin: 'https://lebaba-full-ecommerce-frontend.vercel.app',
+  origin: [
+    'https://lebaba-full-ecomerce-frontend.vercel.app',
+    'http://localhost:5173'
+  ],
   credentials: true,
 }));
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     const allowedOrigins = [
+//       'https://lebaba-full-ecomerce-frontend.vercel.app',
+//       'http://localhost:5173'
+//     ];
+//     if (allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true,
+// }));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 // image upload 
 const uploadImage = require("./src/utils/uploadImage")
